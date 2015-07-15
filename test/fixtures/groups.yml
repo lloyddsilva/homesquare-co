@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  alias: MyString
+  slug: MyString
+  neighborhood_id: 1
+  visibility: MyString
+  owner_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  alias: MyString
+  slug: MyString
+  neighborhood_id: 1
+  visibility: MyString
+  owner_id: 1

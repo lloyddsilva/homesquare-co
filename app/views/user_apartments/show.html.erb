@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_apartment.user_id %>
+</p>
+
+<p>
+  <strong>Apartment:</strong>
+  <%= @user_apartment.apartment_id %>
+</p>
+
+<p>
+  <strong>Membership:</strong>
+  <%= @user_apartment.membership %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @user_apartment.status %>
+</p>
+
+<%= link_to 'Edit', edit_user_apartment_path(@user_apartment) %> |
+<%= link_to 'Back', user_apartments_path %>

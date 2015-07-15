@@ -1,0 +1,45 @@
+
+<div class="headline">
+  <h2>Public Profile</h2>
+</div>
+
+<div class="media">
+  <a class="pull-left" href="#">
+    <%= image_tag @user.avatar.url(:small) %>
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading"><%= @user.full_name %>
+    <% if @current_user != @user %>
+    	<span><%= link_to "Message", new_conversation_path(:user => @user), :class => "btn-u pull-right" %></span>
+    <% else %>
+      <span><%= link_to "Edit Profile", edit_user_registration_path, :class => "btn-u pull-right" %></span>
+    <% end %>
+    </h4>
+    <p><%= @user.apartments.first.neighborhood.name unless @user.apartments.first.nil? %></p>
+  </div>
+</div>
+
+<hr>
+
+<dl class="dl-horizontal">       
+<% if !@user.about_me.blank? %>
+  <dt>About Me</dt><dd><%= @user.about_me %></dd>
+<% end %>
+<% if !@user.resident_since.blank? %>
+  <dt>Resident Since</dt><dd><%= @user.resident_since %></dd>
+<% end %>
+<% if !@user.home_town.blank? %>
+  <dt>Home Town</dt><dd><%= @user.home_town %></dd>
+<% end %>
+<% if !@user.education.blank? %>
+  <dt>Education</dt><dd><%= @user.education %></dd>
+<% end %>
+<% if !@user.occupation.blank? %>
+  <dt>Occupation</dt><dd><%= @user.occupation %></dd>
+<% end %>
+<% if !@user.interests.blank? %>
+  <dt>Interests</dt><dd><%= @user.interests %></dd>
+<% end %>
+</dl>
+
+

@@ -1,0 +1,29 @@
+<h1>Listing apartment_geopoints</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Apartment</th>
+      <th>Geopoint</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @apartment_geopoints.each do |apartment_geopoint| %>
+      <tr>
+        <td><%= apartment_geopoint.apartment_id %></td>
+        <td><%= apartment_geopoint.geopoint_id %></td>
+        <td><%= link_to 'Show', apartment_geopoint %></td>
+        <td><%= link_to 'Edit', edit_apartment_geopoint_path(apartment_geopoint) %></td>
+        <td><%= link_to 'Destroy', apartment_geopoint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Apartment geopoint', new_apartment_geopoint_path %>

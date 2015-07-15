@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @neighborhood.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @neighborhood.description %>
+</p>
+
+<p>
+  <strong>Alias:</strong>
+  <%= @neighborhood.alias %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @neighborhood.slug %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @neighborhood.city_id %>
+</p>
+
+<%= link_to 'Edit', edit_neighborhood_path(@neighborhood) %> |
+<%= link_to 'Back', neighborhoods_path %>

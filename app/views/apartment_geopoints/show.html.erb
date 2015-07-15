@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Apartment:</strong>
+  <%= @apartment_geopoint.apartment_id %>
+</p>
+
+<p>
+  <strong>Geopoint:</strong>
+  <%= @apartment_geopoint.geopoint_id %>
+</p>
+
+<%= link_to 'Edit', edit_apartment_geopoint_path(@apartment_geopoint) %> |
+<%= link_to 'Back', apartment_geopoints_path %>

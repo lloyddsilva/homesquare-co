@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Home Square Labs Pte Ltd">
+  <title><%= content_for?(:title) ? yield(:title) : "Home Square - Your Neighborhood Network" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "HomeSquare" %>">
+  <%= stylesheet_link_tag "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+      <!--[if lt IE 9]>
+      <%= javascript_include_tag "html5shiv" %>
+      <%= javascript_include_tag "respond.min" %>
+      <![endif]-->
+
+    </head>
+    <body class="<%= controller_name %> <%= action_name %>">
+     <% if user_signed_in? %>
+
+     <%= render 'layouts/header_signed_in' %>
+     <div class= "container">
+
+      <% if controller_name == "pages" %>
+        <div class="col-md-12">
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+        </div>
+
+      <% else %>
+
+        <div class="col-md-3 tab-v3">
+          <%= render 'layouts/sidebar' %>
+        </div>
+
+        <div class="col-md-9">
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+        </div>
+      <% end %>
+
+    </div>
+    <%= render 'layouts/footer' %>
+
+    <% else %>
+    <%= render 'layouts/header_not_signed_in' %>
+
+      <div class="container">
+      <%= render 'layouts/messages' %>
+      </div>
+      
+      <%= yield %>
+    
+
+    <%= render 'layouts/footer' %>
+
+    <% end %>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <!--common script for all pages-->
+    <%= javascript_include_tag "theme/app" %>
+
+    <script type="text/javascript">
+      jQuery(document).ready(function() {
+        App.init();
+      });
+    </script>
+  </body>
+  </html>
+

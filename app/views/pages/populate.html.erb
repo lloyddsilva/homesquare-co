@@ -1,0 +1,41 @@
+<!--=== Content Part ===-->
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<%= javascript_include_tag "jquery.ui.addresspicker" %>
+
+<script type="text/javascript">
+  $(function() {
+    var addresspicker = $( "#addresspicker" ).addresspicker({
+      regionBias: "sg"});
+  });
+</script>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class ="one-page">
+  <div class="one-page-inner one-light-green">
+    <div class="container">
+     <div class="row margin-bottom-30">
+      <div class="col-md-6 md-margin-bottom-40">
+        <div class="img-responsive">
+          <%= image_tag("Landing-Image.png", :alt => "Home Square Preview", :id => "landing-image", :class => "img-responsive") %> 
+        </div>
+      </div>
+      <div class="col-md-6 md-margin-bottom-40">
+        <div class="img-responsive">
+          <%= image_tag("Landing-TagLine.png", :alt => "Home Square Tag Line", :id => "landing-tagline", :class => "img-responsive") %> 
+        </div>
+        <h5>Enter your address to begin</h5>
+
+        <%= simple_form_for :lookup, { url: new_user_registration_path, :html => { :method => 'GET' }} do |f| %>
+        <div class="form-inputs">
+          <%= f.input :address, :placeholder => "e.g. 120 Tanjong Rhu Road, Singapore", :input_html => {:id => "addresspicker", :class => "form-control margin-bottom-20"}, label: false %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Join your neighborhood!", :class => 'btn-u btn-block color-green' %>
+        </div>
+        <% end %>
+
+      </div>
+    </div><!--/row-->
+  </div>
+</div>
+</div>

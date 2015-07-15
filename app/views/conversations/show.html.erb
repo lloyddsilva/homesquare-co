@@ -1,0 +1,35 @@
+<div class="tab-content">
+  <div class="headline">
+    <% conversation.participants.each do |participant| %>
+    <% if participant != current_user %>
+    <h2>Conversation with <%= participant.full_name %></h2>
+    <% end %>
+    <% end %>
+  </div>
+  <ul>
+    <%= content_tag_for(:li, conversation.receipts_for(current_user)) do |receipt| %>
+
+    <% message = receipt.message %>
+
+    <div class="media margin-bottom-10">
+      <%= link_to user_path(message.sender), :class => "pull-left" do %>
+      <%= image_tag message.sender.avatar.url(:thumb) %>
+      <% end %>
+      <div class="media-body">
+        <h5 class="media-heading"><%= link_to message.sender.full_name, user_path(message.sender) %></h5>
+
+      </div>
+
+      <p>
+        <%= message.body %>
+        <span class="text-muted m-l-sm pull-right">
+          <i class="fa fa-clock-o muted"></i>
+          <%= time_ago_in_words(message.created_at) + " ago" %>
+        </span>
+      </p>
+      <% end %>
+
+    </div>
+
+  </ul>
+  <%= render 'messages/form', conversation: conversation %>

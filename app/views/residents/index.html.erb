@@ -1,0 +1,21 @@
+<div class="headline">
+  <h2>Neighbors</h2>
+</div>
+
+<% @neighbors.each do |neighbor| %>
+<div class="media">
+  <%= link_to user_path(neighbor), :class => "pull-left" do %>
+     <%= image_tag neighbor.avatar.url(:small) %>
+  <% end %>
+  <div class="media-body">
+    <h4 class="media-heading"><%= link_to neighbor.full_name, user_path(neighbor) %>
+    <% if @current_user != neighbor %>
+    	<span><%= link_to "Message", new_conversation_path(:user => neighbor), :class => "btn-u pull-right" %></span>
+    <% end %>
+    </h4>
+    <p><%= neighbor.apartments.first.neighborhood.name unless neighbor.apartments.first.nil? %></p>
+  </div>
+</div>
+
+<hr>
+<% end %>

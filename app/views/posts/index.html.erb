@@ -1,0 +1,18 @@
+ <!-- page start-->
+ <div class="headline">
+  <h2><%= @postable.name %></h2>
+  <% if @postable.class.name == 'Group' %>
+  	  <%= render 'group_wall_header' %>
+  <% end %>
+  <% if @postable.class.name == "Event" %>
+  		<%= render 'event_wall_header' %>
+  <% end %>
+
+
+</div>
+
+      <%= render 'form' %>
+
+      <%= render 'list' %>
+
+<!-- page end-->

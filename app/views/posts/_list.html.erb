@@ -1,0 +1,106 @@
+
+<% @posts.each do |post| %>
+
+<div class="media">
+  <%= link_to user_path(post.user), :class => "pull-left" do %>
+  <%= image_tag post.user.avatar.url(:small), :class => "media-object" %>
+  <% end %>
+  <div class="media-body">
+    <h4 class="media-heading"><%= post.title + " by " unless post.title.blank? %><%= link_to post.user.full_name, user_path(post.user) %>
+      <span class="text-muted m-l-sm pull-right timestamp">
+        <i class="fa fa-clock-o muted"></i>
+        <%= time_ago_in_words(post.created_at) + " ago" %>
+      </span>
+    </h4>   
+    <p><%= post.content %></p>
+
+    <% if post.attached_document.exists? %>
+    <%= image_tag post.attached_document.url(:medium), :class => "img-responsive" %>
+    <% end %>
+
+    <div class="blog-post-tags margin-top-10">
+      <ul class="list-unstyled list-inline blog-info <%= post.class %>-<%= post.id %>">
+        <li class = "like_form"><%= render 'shared/like_form', likeable: post %></li>
+        <li class = "likes"><i class="fa fa-thumbs-o-up"></i> <%= pluralize(post.likers(User).count, 'like')%></li>
+        <li><i class="fa fa-comments"></i> <%= pluralize(post.comments.count, 'Comment') %></li>
+        <% if post.user == current_user %>
+        <li><i class="fa fa-edit"></i> <%= link_to 'Edit', [:edit, @postable, post] %></li>
+        <li><i class="fa fa-trash-o"></i> <%= link_to 'Delete', post, :method => :delete, :data => { :confirm => 'Are you sure you want to delete this post?' } %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <% post.comments.each do |nbh_post_comment| %>
+
+    <div class="media">
+      <%= link_to user_path(nbh_post_comment.user), :class => "pull-left" do %>
+      <%= image_tag nbh_post_comment.user.avatar.url(:small) %>
+      <% end %>
+      <div class="media-body">
+        <h4 class="media-heading color-green"><%= link_to nbh_post_comment.user.full_name, user_path(nbh_post_comment.user) %>
+          
+          <span class="text-muted m-l-sm pull-right timestamp">
+            <i class="fa fa-clock-o muted"></i>
+            <%= time_ago_in_words(nbh_post_comment.created_at) + " ago" %>
+          </span>
+        </h4>
+        <p><%= nbh_post_comment.comment %></p>
+
+        <div class="blog-post-tags margin-top-10">
+          <ul class="list-unstyled list-inline blog-info <%= nbh_post_comment.class %>-<%= nbh_post_comment.id %>">
+            <li class = "like_form"><%= render 'shared/like_form', likeable: nbh_post_comment %></li>
+            <li class = "likes"><i class="fa fa-thumbs-o-up"></i> <%= pluralize(nbh_post_comment.likers(User).count, 'like')%></li>
+            <% if nbh_post_comment.user == current_user %>
+            <li><i class="fa fa-trash-o"></i> <%= link_to 'Delete', [post, nbh_post_comment], :method => :delete, :data => { :confirm => 'Are you sure you want to delete this comment?' } %></li>
+            <% end %>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <% end %>
+
+    <%= simple_form_for [post, Comment.new] do |f| %>
+
+    
+    <div class="media">
+      <a class="pull-left"><%= image_tag current_user.avatar.url(:small) %></a>
+      <div class="media-body">
+        
+          <%= f.input :comment, :placeholder => 'Write a comment .. ', :class => 'form-control', :input_html => { :class => "form-control input-md no-border"}, :rows => 1, :label => false %>
+          
+          <footer class="panel-footer bg-none">
+       <span class="input-group-btn">
+            <%= f.button :submit, "Comment", :class => "btn btn-u pull-right" %>
+          </span>
+      </footer>
+          
+        
+      </div>
+
+    </div>
+
+
+    <% end %>
+  </div>
+
+</div>
+<hr>
+<% end %>
+
+
+
+<div class="text-center">
+  <ul class="pagination">
+    <% if @posts.previous_page %>
+    <li><%= link_to "< Newer Posts", params.merge(page: @posts.previous_page) %></li>
+    <% end %>
+
+    <% if @posts.next_page %>
+    <li><%= link_to "Older Posts >", params.merge(page: @posts.next_page) %></li>
+    <% end %>
+  </ul>
+</div>
+
+

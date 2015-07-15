@@ -1,0 +1,208 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-user"></i> Edit Profile</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-3">
+      <%= image_tag @current_user.avatar.url(:medium), :class => "pull-left" %>
+    </div>
+    <div class="col-md-9">
+      <div class="media-body">
+       <h4><%= current_user.full_name %></h4>
+       <p><%= current_user.apartments.first.neighborhood.name unless current_user.apartments.first.nil? %><%= " | " + current_user.apartments.first.name unless current_user.apartments.first.nil? %></p>
+     </div>
+   </div>
+
+ </div>
+</div>
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal',  :multipart => true }) do |f| %>
+    <%= f.error_notification %>
+    <%= display_base_errors resource %>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+<section class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-edit"></i> Basic Information</h3>
+  </div>
+  <div class="panel-body">
+
+    
+    <div class="form-group">
+      <label  class="col-md-3 control-label">First Name</label>
+      <div class="col-md-9">
+        <%= f.input :first_name, :required => true, :autofocus => true, :label => false, :input_html => {:class => 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Last Name</label>
+      <div class="col-md-9">
+        <%= f.input :last_name, :required => true, :label => false, :input_html => {:class => 'form-control'} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Email Address</label>
+      <div class="col-md-9">
+        <%= f.input :email, :required => true, :label => false, :input_html => {:class => 'form-control'} %>
+      </div>
+    </div>
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Gender</label>
+      <div class="col-md-9">
+        <%= f.input :gender, :label => false, :input_html => {:class => 'form-control'}, as: :select, :collection => User::GENDERS %>
+      </div>
+    </div>
+    <div class="form-group" id="birthday-date-picker">
+    <%= f.label "Birthday", :class => "control-label col-md-3" %>
+    <div class="col-md-9">
+    <%= f.text_field :birthday, :input_html => {:class => "form-control"}, "data-format" => "dd-MM-yyyy" %>
+    <span class="add-on">
+      <i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-calendar">
+      </i>
+    </span>
+    </div>
+  </div>
+
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Profile Picture</label>
+      <div class="col-md-9">
+        <%= f.file_field :avatar, :input_html => {:class => 'file-pos'} %>
+      </div>
+    </div>
+
+      </div>
+</section>
+
+    <section class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-edit"></i> Address</h3>
+      </div>
+      <div class="panel-body">
+
+    <div class="form-group">
+      <label  class="col-md-3 align-right">Address</label>
+      <div class="col-md-9">
+      <%= current_user.apartments.first.name unless current_user.apartments.first.nil? %>
+      </div>
+    </div>
+
+    </div>
+</section>
+
+<section class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-edit"></i> About</h3>
+      </div>
+      <div class="panel-body">
+
+      <div class="form-group">
+      <label  class="col-md-3 control-label">About me</label>
+      <div class="col-md-9">
+        <%= f.input :about_me, :label => false, :input_html => {:class => 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group" id="resident-since-date-picker">
+    <%= f.label "Resident Since", :class => "control-label col-md-3" %>
+    <div class="col-md-9">
+    <%= f.text_field :resident_since, :input_html => {:class => "form-control"}, "data-format" => "dd-MM-yyyy" %>
+    <span class="add-on">
+      <i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-calendar">
+      </i>
+    </span>
+    </div>
+  </div>
+
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Home Town</label>
+      <div class="col-md-9">
+        <%= f.input :home_town, :label => false, :input_html => {:class => 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Education</label>
+      <div class="col-md-9">
+        <%= f.input :education, :label => false, :input_html => {:class => 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Occupation</label>
+      <div class="col-md-9">
+        <%= f.input :occupation, :label => false, :input_html => {:class => 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Interests</label>
+      <div class="col-md-9">
+        <%= f.input :interests, :label => false, :input_html => {:class => 'form-control'} %>
+      </div>
+    </div>
+
+      </div>
+</section>
+
+<% if @current_user.provider.blank? %>
+
+<section class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-edit"></i> Change Password</h3>
+      </div>
+      <div class="panel-body">
+
+
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Change Password</label>
+      <div class="col-md-9">
+        <%= f.input :password, :autocomplete => "off", :label => false, :input_html => {:class => 'form-control'}, :hint => "Leave it blank if you don't want to change it", :required => false %>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label  class="col-md-3 control-label">Password Confirmation</label>
+      <div class="col-md-9">
+        <%= f.input :password, :autocomplete => "off", :label => false, :input_html => {:class => 'form-control'}, :required => false %>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<% end %>
+
+<section class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-edit"></i> Save Changes</h3>
+      </div>
+      <div class="panel-body">
+
+    <% if @current_user.provider.blank? %>
+      <div class="form-group">
+        <label  class="col-md-3 control-label">Current Password</label>
+        <div class="col-md-9">
+          <%= f.input :current_password, :required => true, :label => false, :input_html => {:class => 'form-control'}, :hint => "We need your current password to confirm your changes" %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= f.button :submit, 'Update', :class => 'btn-info pull-right' %>
+    <% end %>
+    <br/>
+    <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :class => "text-warning", :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+
+  </div>
+</section>
+
+
+<script type="text/javascript">
+  $(function() {
+    $('#birthday-date-picker').datetimepicker({ pickTime: false });
+    $('#resident-since-date-picker').datetimepicker({ pickTime: false });
+  });
+</script>

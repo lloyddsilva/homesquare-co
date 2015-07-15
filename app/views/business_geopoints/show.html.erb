@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Business:</strong>
+  <%= @business_geopoint.business_id %>
+</p>
+
+<p>
+  <strong>Geopoint:</strong>
+  <%= @business_geopoint.geopoint_id %>
+</p>
+
+<%= link_to 'Edit', edit_business_geopoint_path(@business_geopoint) %> |
+<%= link_to 'Back', business_geopoints_path %>

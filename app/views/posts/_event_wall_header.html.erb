@@ -1,0 +1,7 @@
+		<div class="blog-post-tags margin-top-10">
+        <ul class="list-unstyled list-inline blog-info">
+          <li><i class="fa fa-map-marker"></i> <%= @postable.venue %></li>
+          <li><i class="fa fa-calendar"></i> <%= @postable.event_date.strftime("%A, %d %B, %Y") %> | <%= @postable.start_time.strftime("%H:%M") %>  - <%= @postable.end_time.strftime("%H:%M") %></li>
+        </ul>
+      	</div>
+  		<p class="margin-top-10"><%= @postable.description unless @postable.description.blank? %></p>

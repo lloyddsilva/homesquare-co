@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  alias: MyString
+  slug: MyString
+  venue: MyString
+  event_date: 2014-02-10
+  start_time: 2014-02-10 15:11:24
+  end_time: 2014-02-10 15:11:24
+  owner_id: 1
+  neighborhood_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  alias: MyString
+  slug: MyString
+  venue: MyString
+  event_date: 2014-02-10
+  start_time: 2014-02-10 15:11:24
+  end_time: 2014-02-10 15:11:24
+  owner_id: 1
+  neighborhood_id: 1

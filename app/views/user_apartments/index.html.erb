@@ -1,0 +1,33 @@
+<h1>Listing user_apartments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Apartment</th>
+      <th>Membership</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_apartments.each do |user_apartment| %>
+      <tr>
+        <td><%= user_apartment.user_id %></td>
+        <td><%= user_apartment.apartment_id %></td>
+        <td><%= user_apartment.membership %></td>
+        <td><%= user_apartment.status %></td>
+        <td><%= link_to 'Show', user_apartment %></td>
+        <td><%= link_to 'Edit', edit_user_apartment_path(user_apartment) %></td>
+        <td><%= link_to 'Destroy', user_apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User apartment', new_user_apartment_path %>

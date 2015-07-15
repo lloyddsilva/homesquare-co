@@ -1,0 +1,26 @@
+
+<div class = "container">
+  <div class="row">
+    <p></p>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+      <div class="authform">
+        <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :role => 'form', :class => "reg-page"}) do |f| %>
+        <div class="reg-header">            
+          <h2>Forgot your password?</h2>
+          
+        </div>
+        <p class="text-center">Enter your email, we'll send password reset instructions.</p>
+        <%= devise_error_messages! %>
+        <div class="form-group">
+          <%= f.email_field :email, :autofocus => true, class: 'form-control', :label => false  %>
+        </div>
+        <%= f.submit 'Reset Password', :class => 'btn-u pull-right' %>
+        <% end %>
+      </div>
+    </div>
+  </div><!--/row-->
+</div>

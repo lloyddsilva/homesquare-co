@@ -1,0 +1,19 @@
+
+<%= simple_form_for [@groupable, @group], :html => {:class => "form-horizontal"} do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-group">
+    <%= f.input :name, :input_html => {:class => "form-control"}, :label => "Group Name", :label_html => {:class => "color-green"} %>
+  </div>
+  <div class="form-group">
+    <%= f.input :description, :input_html => {:class => "form-control"}, :label => "Group Description", :label_html => {:class => "color-green"} %>
+   </div>
+   <div class="form-group text-muted">
+    <%= f.input :visibility, :collection => [['Public Group - All residents can view contents of the group', 'Public']], :as => :radio_buttons, :input_html => {:class => "radio color-green"}, :label_html => {:class => "color-green"} %>
+    </div>
+   <div class="form-group">
+    <%= f.button :submit, :class => "pull-right btn-u btn-u-green" %>
+    <%= link_to 'Back', :back, :class => "" %>
+  </div>
+    
+<% end %>

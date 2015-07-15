@@ -1,0 +1,63 @@
+<div class="container">
+<div class="row">
+  <p></p>
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+    <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "reg-page"}) do |f| %>
+
+    <div class="reg-header">
+      <h2>Register a new account</h2>
+      <p>Already Signed Up? Click <%= link_to "Log In", new_session_path(resource_name), :class => "color-green" %> to login to your account.</p>                    
+    </div>
+
+    <p>
+      <%= link_to user_omniauth_authorize_path(:facebook), :class => 'btn btn-block btn-social btn-facebook' do %>
+        <i class="fa fa-facebook"></i>Sign up with Facebook&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <% end %> 
+    </p>
+
+    <p class="color-grey text-center">- OR -</p>
+
+    <%= f.error_notification %>
+    <%= display_base_errors resource %>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.input :first_name, :input_html => {:class => "form-control margin-bottom-20"}, :placeholder => "First Name", :label => false, :required => true, :autofocus => true %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :last_name, :input_html => {:class => "form-control margin-bottom-20"}, :placeholder => "Last Name", :label => false, :required => true %>
+      </div>
+    </div>
+
+    
+    <%= f.input :email, :input_html => {:class => "form-control"}, :placeholder => "Email Address", :label => false, :required => true %>
+    <p>*A confirmation link will be sent to your email address</p>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <%= f.input :password, :input_html => {:class => "form-control margin-bottom-20"}, :placeholder => "Password", :label => false, :required => true %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.input :password_confirmation, :input_html => {:class => "form-control margin-bottom-20"}, :placeholder => "Confirm Password", :label => false, :required => true %>
+      </div>
+    </div>
+
+    <%= f.label :terms_of_service do %>
+        <%= f.check_box :terms_of_service, :checked => true %>
+        I agree to the <%= link_to "Terms of Service", pages_terms_path, :class => "color-green" %> and <%= link_to "Privacy Policy", pages_privacy_path, :class => "color-green" %>
+        <% if resource.errors[:terms_of_service].present? %><p><%= resource.errors[:terms_of_service] %></p><% end %>
+    </label>
+    <% end %>
+
+    <%= f.button :submit, 'Sign up with Email', :class => 'btn-u btn-block color-green' %>
+
+    <% end %>
+  </div>
+</div>
+</div>

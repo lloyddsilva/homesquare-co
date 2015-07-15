@@ -1,0 +1,53 @@
+
+<%= simple_form_for [@eventable, @event], :html => {:class => "form-horizontal"} do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-group">
+    <%= f.input :name, :input_html => {:class => "form-control"}, :label => "Event Title", :label_html => {:class => "color-green"} %>
+  </div>
+  <div class="form-group">
+    <%= f.input :description, :input_html => {:class => "form-control"}, :label => "Event Description", :label_html => {:class => "color-green"} %>
+   </div>
+   <div class="form-group">
+    <%= f.input :venue, :input_html => {:class => "form-control"}, :label => "Venue", :label_html => {:class => "color-green"} %>
+  </div>
+  <div class="form-group" id="event-date-picker">
+    <%= f.label "Date", :class => "color-green col-md-2" %>
+    <%= f.text_field :event_date, :input_html => {:class => "form-control"}, "data-format" => "yyyy-MM-dd" %>
+    <span class="add-on">
+      <i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-calendar">
+      </i>
+    </span>
+  </div>
+  <div class="form-group" id="event-time-picker-1">
+    <%= f.label "Start Time", :class => "color-green col-md-2" %>
+    <%= f.text_field :start_time, :input_html => {:class => "form-control"}, "data-format" => "hh:mm" %>
+    <span class="add-on">
+      <i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-calendar">
+      </i>
+    </span>
+  </div>
+  <div class="form-group" id="event-time-picker-2">
+    <%= f.label "End Time", :class => "color-green col-md-2" %>
+    <%= f.text_field :end_time, :input_html => {:class => "form-control"}, "data-format" => "hh:mm" %>
+    <span class="add-on">
+      <i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-calendar">
+      </i>
+    </span>
+  </div>
+
+   <div class="form-group">
+    <%= f.button :submit, :class => "pull-right btn-u btn-u-green" %>
+    <%= link_to 'Back', :back, :class => "" %>
+  </div>
+    
+<% end %>
+
+
+<script type="text/javascript">
+  $(function() {
+    $('#event-date-picker').datetimepicker({ pickTime: false });
+    $('#event-time-picker-1').datetimepicker({ pickDate: false, pickSeconds: false });
+    $('#event-time-picker-2').datetimepicker({ pickDate: false, pickSeconds: false });
+  });
+</script>

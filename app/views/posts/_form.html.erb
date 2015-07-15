@@ -1,0 +1,19 @@
+
+ 			<section class="panel">
+
+ 			<%= simple_form_for [@postable, @post] do |f| %>
+ 			<%= f.error_notification %>
+			<%= f.input :content, :placeholder => "Post a message to your neighbors", :input_html => { :class => "form-control input-md no-border", :rows => "3" }, :label => false %>
+
+ 			<footer class="panel-footer bg-light">
+ 				<%= f.button :submit, "Post", :class => "btn btn-u pull-right" %>
+ 				<ul class="nav nav-pills file-input">
+ 					<li>
+ 						<%= f.file_field :attached_document, :class => "hidden" %>
+ 						<a href="#" onclick="document.getElementById('post_attached_document').click();"><i class="fa fa-camera"></i></a>
+ 					</li>
+ 				</ul>
+ 			</footer>
+ 			<% end %>
+ 			</section>
+

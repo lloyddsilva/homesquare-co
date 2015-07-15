@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @geopoint.address %>
+</p>
+
+<p>
+  <strong>Street name:</strong>
+  <%= @geopoint.street_name %>
+</p>
+
+<p>
+  <strong>Block number:</strong>
+  <%= @geopoint.block_number %>
+</p>
+
+<p>
+  <strong>Postal code:</strong>
+  <%= @geopoint.postal_code %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @geopoint.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @geopoint.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_geopoint_path(@geopoint) %> |
+<%= link_to 'Back', geopoints_path %>

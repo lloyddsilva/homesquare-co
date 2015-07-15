@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+	<% if current_user.likes?(likeable) %>
+		<%= render 'shared/unlike', likeable: likeable %>
+	<% else %>
+		<%= render 'shared/like', likeable: likeable  %>
+	<% end %>
+<% end %>

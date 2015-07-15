@@ -1,0 +1,28 @@
+
+<div class="headline">
+  <h2>Groups</h2>
+  <%= link_to 'Add New Group', [:new, @groupable, :group], :class => "btn-u pull-right" %>
+</div>
+
+<% @groups.each do |group| %>
+<div class="media">
+  <div class="media-body">
+  
+    <div class="blog-post-tags pull-right">
+        <ul class="list-unstyled list-inline blog-info">
+          <% if current_user == group.owner %>
+            <li><i class="fa fa-edit"></i> <%= link_to 'Edit', edit_group_path(group) %></li>
+            <li><i class="fa fa-trash-o"></i> <%= link_to 'Delete', group, method: :delete, data: { :confirm => 'Are you sure you want to delete this group?' } %></li>
+          <% end %>
+          <%= link_to 'Open', group_posts_path(group), :class => "btn-u" %>
+        </ul>                                       
+      </div>
+    
+    <h4 class="media-heading color-green"><%= group.name %></h4>
+    <p><%= group.description %></p>
+
+  </div>
+</div>
+
+<hr>
+<% end %>
